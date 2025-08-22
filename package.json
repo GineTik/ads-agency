@@ -1,0 +1,24 @@
+{
+	"name": "ads-agency",
+	"version": "1.0.0",
+	"private": true,
+	"description": "Ads Agency monorepo",
+	"scripts": {
+		"dev": "pnpm --filter frontend dev",
+		"dev:supabase": "pnpm --filter supabase dev",
+		"build": "pnpm --filter frontend build",
+		"start": "pnpm --filter frontend start",
+		"lint": "pnpm --filter frontend lint",
+		"clean": "pnpm -r exec rm -rf dist .next node_modules",
+		"install:all": "pnpm install",
+		"type-check": "pnpm -r --parallel run type-check"
+	},
+	"devDependencies": {
+		"typescript": "^5"
+	},
+	"packageManager": "pnpm@9.0.0",
+	"engines": {
+		"node": ">=18.0.0",
+		"pnpm": ">=8.0.0"
+	}
+}

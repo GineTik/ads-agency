@@ -1,0 +1,139 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Frontend Architecture Overview
+
+## Architecture Pattern: Evolution Design
+
+The project follows the **Evolution Design architecture pattern** with a clean 3-layer separation:
+
+1. **`src/app/`** - Application layer containing Next.js App Router structure, pages, layouts, and global styles
+2. **`src/features/`** - Features layer for domain-specific business logic and components (currently being set up)
+3. **`src/shared/`** - Shared layer containing reusable utilities, components, and libraries
+
+## Core Technologies & Libraries
+
+### Framework & Runtime
+- **Next.js 15.4.5** with App Router and React 19.1.0
+- **TypeScript** for type safety
+- **Turbopack** for fast development builds
+
+### UI Component System
+- **shadcn/ui** as the primary UI component library
+  - Configured with "new-york" style variant
+  - Uses Radix UI primitives for accessibility
+  - Custom component aliases pointing to `@/shared/components/ui-kit`
+  - **Lucide React** for iconography
+  - **Tailwind CSS v4** with CSS variables for theming
+
+### Content Management
+- **TinaCMS 2.8.2** as a Git-based headless CMS and website builder
+  - Configured for visual editing with live preview
+  - Schema-driven content management
+  - Built-in admin panel at `/admin`
+
+### Styling & Utilities
+- **Tailwind CSS v4** with PostCSS configuration
+- **class-variance-authority** for component variant handling
+- **clsx** and **tailwind-merge** for conditional styling
+- **tw-animate-css** for animations
+
+## Project Structure
+
+```
+frontend/
+├── src/                          # Main source directory
+│   ├── app/                      # Next.js App Router (Application Layer)
+│   │   ├── layout.tsx           # Root layout
+│   │   ├── page.tsx             # Home page
+│   │   ├── globals.css          # Global styles
+│   │   └── tina/                # TinaCMS content storage
+│   │       └── content/         # Content collections
+│   │           ├── posts/       # Blog posts
+│   │           └── pages/       # Static pages
+│   ├── features/                # Feature modules (Features Layer)
+│   │   └── landing/             # Landing page sections and components
+│   └── shared/                  # Shared utilities (Shared Layer)
+│       ├── components/          # Reusable components
+│       │   └── ui-kit/         # shadcn/ui components
+│       ├── lib/                # Utility functions
+│       └── hooks/              # Custom React hooks
+├── tina/                        # TinaCMS configuration
+│   ├── config.ts               # CMS schema and collections
+│   └── __generated__/          # Auto-generated TinaCMS types
+├── public/                      # Static assets
+│   ├── admin/                  # TinaCMS admin panel
+│   └── media/                  # Uploaded media files
+└── package.json                # Dependencies and scripts
+```
+
+## Key Directories Explained
+
+### `src/` - Project Foundation
+The main source directory containing all three architectural layers of the Evolution design pattern.
+
+### `tina/` - CMS Configuration
+Contains TinaCMS configuration and auto-generated code for the client. This directory manages:
+- Content schema definitions
+- Collection configurations
+- Generated TypeScript types for content
+
+### `public/admin` - TinaCMS Admin Panel
+The admin interface for TinaCMS content management system, accessible at `/admin` route.
+
+### `src/features/landing/` - Landing Page Components
+This directory contains all sections and components necessary for building landing pages, including:
+- Hero sections
+- Feature showcases
+- Testimonial components
+- Call-to-action sections
+- Portfolio displays
+
+## TinaCMS Content Management System
+
+The project uses **TinaCMS** as both a content management system and website builder with the following collections:
+
+1. **Projects** - Portfolio showcase with galleries, technologies, and client information
+2. **Team Members** - Staff profiles with skills, photos, and social links  
+3. **Testimonials** - Client reviews with ratings and related projects
+4. **Blog Posts** - Content marketing with authors, tags, and rich text
+
+### Key CMS Features
+- Visual editing with live preview
+- Git-based content storage
+- Rich media management
+- Schema-driven content modeling
+- Reference relationships between collections
+
+## Development Workflow
+
+### Development Server
+```bash
+pnpm dev  # Runs TinaCMS dev server with Next.js and Turbopack
+```
+
+### Build Process
+```bash
+pnpm build  # Builds TinaCMS schema then Next.js application
+```
+
+### Admin Access
+- TinaCMS admin panel available at `/admin`
+- Visual editing enabled for content management
+- Local development with `TINA_PUBLIC_IS_LOCAL=true`
+
+## Component Architecture
+
+- **shadcn/ui components** in `src/shared/components/ui-kit/`
+- **Custom path aliases** configured for clean imports:
+  - `@/shared/components` for shared components
+  - `@/shared/lib/utils` for utilities
+  - `@/shared/hooks` for custom hooks
+- **Utility-first styling** with Tailwind CSS
+- **Accessible components** built on Radix UI primitives
+
+## Summary
+
+This architecture provides a scalable foundation for building marketing websites and landing pages with powerful content management capabilities, while maintaining clean separation of concerns through the Evolution Design pattern. The combination of Next.js, shadcn/ui, and TinaCMS creates a modern, developer-friendly stack that enables both technical flexibility and content editor empowerment.
