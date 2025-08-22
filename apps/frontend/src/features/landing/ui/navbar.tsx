@@ -1,5 +1,3 @@
-import { Menu } from 'lucide-react'
-
 import {
 	Accordion,
 	AccordionContent,
@@ -23,7 +21,9 @@ import {
 	SheetTitle,
 	SheetTrigger,
 } from '@/shared/components/ui-kit/sheet'
-import { useMenu } from '../hooks/use-menu'
+import { Menu } from 'lucide-react'
+import Link from 'next/link'
+import { MenuItem, useMenu } from '../hooks/use-menu'
 
 export const Navbar = () => {
 	const menu = useMenu()
@@ -83,7 +83,7 @@ const renderMenuItem = (item: MenuItem) => {
 				<NavigationMenuTrigger>{item.title}</NavigationMenuTrigger>
 				<NavigationMenuContent className='bg-popover text-popover-foreground'>
 					{item.items.map((subItem) => (
-						<NavigationMenuLink asChild key={subItem.title} className='w-80'>
+						<NavigationMenuLink key={subItem.title} className='w-80'>
 							<SubMenuLink item={subItem} />
 						</NavigationMenuLink>
 					))}
@@ -121,27 +121,23 @@ const renderMobileMenuItem = (item: MenuItem) => {
 	}
 
 	return (
-		<a key={item.title} href={item.url} className='text-md font-semibold'>
+		<Link
+			key={item.title}
+			href={item.url ?? ''}
+			className='text-md font-semibold'
+		>
 			{item.title}
-		</a>
+		</Link>
 	)
 }
 
 const SubMenuLink = ({ item }: { item: MenuItem }) => {
 	return (
-		<a
-			className='hover:bg-muted hover:text-accent-foreground flex select-none flex-row gap-4 rounded-md p-3 leading-none no-underline outline-none transition-colors'
-			href={item.url}
+		<Link
+			className='hover:bg-muted hover:text-accent-foreground p-2'
+			href={item.url ?? ''}
 		>
-			<div className='text-foreground'>{item.icon}</div>
-			<div>
-				<div className='text-sm font-semibold'>{item.title}</div>
-				{item.description && (
-					<p className='text-muted-foreground text-sm leading-snug'>
-						{item.description}
-					</p>
-				)}
-			</div>
-		</a>
+			<div className='text-sm font-semibold'>{item.title}</div>
+		</Link>
 	)
 }
