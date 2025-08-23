@@ -29,7 +29,7 @@ export const Navbar = () => {
 	const menu = useMenu()
 
 	return (
-		<section className='absolute top-0 left-0 right-0 z-50 py-4'>
+		<section className='absolute top-0 left-0 right-0 z-50 py-4 px-2'>
 			<div className='container mx-auto'>
 				<nav className='hidden justify-start lg:flex gap-10'>
 					<Logo />

@@ -6,8 +6,8 @@ type TabDescriptionProps = {
 
 export function TabDescription({ description }: TabDescriptionProps) {
 	return (
-		<div className='flex gap-4 flex-row items-center justify-between'>
-			<p className='text-muted-foreground text-md leading-relaxed text-justify max-w-3/4'>
+		<div className='flex flex-col md:flex-row gap-4 md:items-center justify-between'>
+			<p className='text-muted-foreground text-md leading-relaxed text-justify md:w-3/4 px-2 md:p-0'>
 				{description}
 			</p>
 			<div className='flex-shrink-0'>

@@ -13,7 +13,7 @@ import {
 
 export function Characteristics() {
 	return (
-		<section className='py-16 md:py-24 lg:py-32 bg-muted'>
+		<section className='px-2 py-16 md:py-24 lg:py-32 bg-muted'>
 			<div className='container'>
 				<div className='mb-12 text-center'>
 					<h2 className='text-xl font-bold tracking-tight md:text-4xl lg:text-5xl'>

@@ -17,6 +17,10 @@ export const useMenu = () => {
 				{ title: 'Лайтбокси', url: ROUTES.SERVICE('lightboxes') },
 			],
 		},
+		{
+			title: 'Інтерактивна карта',
+			url: ROUTES.MAP,
+		},
 	]
 	return menu
 }

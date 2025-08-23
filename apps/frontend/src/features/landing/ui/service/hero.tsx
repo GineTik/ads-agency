@@ -1,4 +1,5 @@
 import { Button } from '@/shared/components/ui-kit/button'
+import { ArrowDownRightIcon } from 'lucide-react'
 import Image from 'next/image'
 
 interface About3Props {
@@ -67,7 +68,7 @@ const defaultAchievements = [
 	{ label: 'Міст присутності', value: '25+' },
 ]
 
-const Hero = ({
+export const Hero = ({
 	title = 'Фізична реклама',
 	description = 'Створюємо ефективну зовнішню рекламу, що збільшує впізнаваність вашого бренду та залучає нових клієнтів. Від концепції до монтажу — ми забезпечуємо повний цикл виробництва рекламних конструкцій.',
 	mainImage = {
@@ -84,8 +85,6 @@ const Hero = ({
 		title: 'Готові збільшити продажі вашого бізнесу?',
 		description:
 			'Понад 850 реалізованих проектів від невеликих вивісок до масштабних білбордних кампаній',
-		buttonText: "Зв'язатися з нами",
-		buttonUrl: '#contact',
 	},
 	companiesTitle = 'Нам довіряють провідні бренди',
 	companies = defaultCompanies,
@@ -94,7 +93,7 @@ const Hero = ({
 	achievements = defaultAchievements,
 }: About3Props = {}) => {
 	return (
-		<section className='py-32'>
+		<section className='px-2 py-32'>
 			<div className='container'>
 				<div className='mb-14 grid gap-5 text-center md:grid-cols-2 md:text-left'>
 					<h1 className='text-5xl font-semibold'>{title}</h1>
@@ -110,23 +109,33 @@ const Hero = ({
 					/>
 					<div className='flex flex-col gap-7 md:flex-row lg:flex-col'>
 						<div className='flex flex-col justify-between gap-6 rounded-xl bg-muted p-7 md:w-1/2 lg:w-auto'>
-							<img
+							<Image
 								src={breakout.src}
 								alt={breakout.alt}
 								className='mr-auto h-12'
+								width={50}
+								height={50}
 							/>
 							<div>
 								<p className='mb-2 text-lg font-semibold'>{breakout.title}</p>
 								<p className='text-muted-foreground'>{breakout.description}</p>
 							</div>
-							<Button variant='outline' className='mr-auto' asChild>
-								<a href={breakout.buttonUrl}>{breakout.buttonText}</a>
-							</Button>
+							<div className='flex gap-2'>
+								<Button variant='outline' className='flex-1'>
+									Зв&apos;язатися з нами
+								</Button>
+								<Button variant='outline' className='flex-1'>
+									Вибрати борд
+									<ArrowDownRightIcon className='size-4' />
+								</Button>
+							</div>
 						</div>
-						<img
+						<Image
 							src={secondaryImage.src}
 							alt={secondaryImage.alt}
 							className='grow basis-0 rounded-xl object-cover md:w-1/2 lg:min-h-0 lg:w-auto'
+							width={1000}
+							height={1000}
 						/>
 					</div>
 				</div>
@@ -135,10 +144,12 @@ const Hero = ({
 					<div className='mt-8 flex flex-wrap justify-center gap-8'>
 						{companies.map((company, idx) => (
 							<div className='flex items-center gap-3' key={company.src + idx}>
-								<img
+								<Image
 									src={company.src}
 									alt={company.alt}
 									className='h-6 w-auto md:h-8'
+									width={1000}
+									height={1000}
 								/>
 							</div>
 						))}
@@ -167,5 +178,3 @@ const Hero = ({
 		</section>
 	)
 }
-
-export { Hero as About }

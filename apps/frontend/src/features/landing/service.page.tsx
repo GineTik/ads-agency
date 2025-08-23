@@ -1,10 +1,9 @@
-import { Characteristics } from './ui/service'
-import { About } from './ui/service/hero'
+import { Characteristics, Hero } from './ui/service'
 
 export function ServicePage() {
 	return (
 		<>
-			<About />
+			<Hero />
 			<Characteristics />
 		</>
 	)
