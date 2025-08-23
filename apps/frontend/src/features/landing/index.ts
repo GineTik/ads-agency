@@ -6,3 +6,6 @@ export * from './ui/hero'
 export * from './ui/logos'
 export * from './ui/navbar'
 export * from './ui/service/hero'
+export * from './ui/team'
+export * from './ui/testimonials'
+
