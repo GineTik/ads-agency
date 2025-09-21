@@ -3,11 +3,12 @@
 import { Button } from '@/shared/components/ui-kit/button'
 import { Card, CardContent, CardHeader } from '@/shared/components/ui-kit/card'
 import {
-    Carousel,
-    CarouselContent,
-    CarouselItem,
-    type CarouselApi
+	Carousel,
+	CarouselContent,
+	CarouselItem,
+	type CarouselApi
 } from '@/shared/components/ui-kit/carousel'
+import { cn } from '@/shared/lib/utils'
 import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react'
 import Image from 'next/image'
 import { useState } from 'react'
@@ -20,6 +21,7 @@ interface ClientTestimonial {
 	image: string
 	testimonial: string
 	featured?: boolean
+	imageClassName?: string
 }
 
 const clientTestimonials: ClientTestimonial[] = [
@@ -28,17 +30,18 @@ const clientTestimonials: ClientTestimonial[] = [
 		name: 'Андрій Коваль',
 		position: 'Маркетинг-директор',
 		company: 'Світ Продуктів',
-		image: 'https://deifkwefumgah.cloudfront.net/shadcnblocks/block/avatar-1.webp',
-		testimonial: 'Завдяки професійній роботі агентства ми збільшили впізнаваність бренду на 60%. Якість виконання перевершила всі очікування.',
-		featured: true
+		testimonial: 'Завдяки професійній роботі агентства ми збільшили впізнаваність бренду на 60%. Якість неперевершена!',
+		featured: true,
+		image: 'https://streamline-nextjs-template.vercel.app/images/homepage/testimonials/kevin-yam.webp',
+		imageClassName: 'object-top'
 	},
 	{
 		id: '2',
 		name: 'Ольга Мельник',
 		position: 'Власник мережі',
 		company: 'ТехноМарт',
-		image: 'https://deifkwefumgah.cloudfront.net/shadcnblocks/block/avatar-2.webp',
-		testimonial: 'Комплексний підхід до брендингу 15 торгових точок. Команда справжніх професіоналів з неймовірною увагою до деталей.'
+		image: 'https://streamline-nextjs-template.vercel.app/images/homepage/testimonials/victoria-smith.webp',
+		testimonial: 'Комплексний підхід до брендингу 15 торгових точок. Команда справжніх професіоналів з неймовірною увагою до деталей.',
 	},
 	{
 		id: '3',
@@ -88,7 +91,7 @@ export function Team() {
 	}
 
 	return (
-		<section className='bg-mint-50 py-16 md:py-28 lg:py-32'>
+		<section className='bg-mint py-16 md:py-28 lg:py-32'>
 			<div className='container'>
 				{/* Header */}
 				<div className='flex flex-col gap-3 md:flex-row mb-8 md:mb-12 lg:mb-20'>
@@ -97,7 +100,7 @@ export function Team() {
 						<br />
 						<span className='text-primary'>клієнти-лідери</span>
 					</h2>
-					<div className='flex flex-1 flex-col items-start gap-3 md:max-w-md md:self-end'>
+					<div className='flex flex-1 flex-col items-start gap-3 md:max-w-md md:self-end mt-2'>
 						<p className='text-lg font-medium text-gray-700 dark:text-gray-300'>
 							Професійна зовнішня реклама будується на довірі, якості та результатах. 
 							Ми допомагаємо брендам виділятися та залучати більше клієнтів.
@@ -120,19 +123,19 @@ export function Team() {
 								loop: true,
 							}}
 						>
-							<CarouselContent className='-ml-4'>
-								{clientTestimonials.map((testimonial, index) => (
-									<CarouselItem 
-										key={testimonial.id} 
-										className='pl-4 basis-4/5 md:basis-1/2 lg:basis-[34%]'
-									>
-										<TestimonialCard 
-											testimonial={testimonial} 
-											featured={index === 0}
-										/>
-									</CarouselItem>
-								))}
-							</CarouselContent>
+										<CarouselContent className='-ml-4'>
+				{clientTestimonials.map((testimonial, index) => (
+					<CarouselItem 
+						key={testimonial.id} 
+						className='pl-4 basis-4/5 md:basis-1/2 lg:basis-[34%]'
+					>
+											<TestimonialCard 
+						testimonial={testimonial} 
+						isActive={index === current}
+					/>
+					</CarouselItem>
+				))}
+			</CarouselContent>
 						</Carousel>
 					</div>
 
@@ -144,11 +147,12 @@ export function Team() {
 								{Array.from({ length: count }).map((_, index) => (
 									<button
 										key={index}
-										className={`size-4 rounded-full transition-colors ${
+										className={cn(
+                                            'size-4 rounded-full transition-colors cursor-pointer',
 											index === current 
-												? 'bg-foreground' 
-												: 'bg-foreground/40 hover:bg-foreground/60'
-										}`}
+												? 'bg-white' 
+												: 'bg-white/70 hover:bg-white'
+										)}
 										onClick={() => scrollTo(index)}
 										aria-label={`Перейти до відгуку ${index + 1}`}
 									/>
@@ -158,7 +162,7 @@ export function Team() {
 							{/* Navigation Arrows */}
 							<div className='flex gap-2'>
 								<Button
-									variant='outline'
+									variant='ghost'
 									size='icon'
 									className='rounded-full size-11 bg-background/40 hover:bg-background/60'
 									onClick={() => api?.scrollPrev()}
@@ -167,7 +171,7 @@ export function Team() {
 									<span className='sr-only'>Попередній слайд</span>
 								</Button>
 								<Button
-									variant='outline'
+									variant='ghost'
 									size='icon'
 									className='rounded-full size-11 bg-background/40 hover:bg-background/60'
 									onClick={() => api?.scrollNext()}
@@ -186,32 +190,40 @@ export function Team() {
 
 function TestimonialCard({ 
 	testimonial, 
-	featured = false 
+	isActive = false
 }: { 
 	testimonial: ClientTestimonial
-	featured?: boolean 
+	isActive?: boolean
 }) {
 	return (
 		<Card className={`
-			rounded-xl h-full overflow-hidden border-[7px] transition-all
-			${featured 
-				? 'border-foreground shadow-sm' 
-				: 'border-mint-200 text-primary shadow-none'
+			rounded-xl h-full overflow-hidden border-[7px] transition-all duration-300
+			${isActive 
+				? 'border-foreground shadow-sm bg-card text-card-foreground' 
+				: 'border-mint shadow-none bg-card text-primary'
 			}
 		`}>
 			<CardHeader className='p-0'>
-				<div className='relative aspect-[4/3.3] w-full bg-primary/20'>
+				<div className={`relative aspect-[4/3.3] w-full transition-all duration-300 ${
+					isActive ? 'bg-primary/20' : 'bg-emerald-600/20'
+				}`}>
+					{/* Green overlay for inactive cards */}
+					{!isActive && (
+						<div className='absolute inset-0 bg-emerald-600/30 mix-blend-multiply z-10' />
+					)}
 					<Image
 						src={testimonial.image}
 						alt={testimonial.name}
 						fill
-						className={`object-cover transition-all object-top ${
-							!featured ? 'mix-blend-luminosity' : ''
-						}`}
+						className={cn(
+							'object-cover transition-all duration-300 object-center',
+							!isActive ? 'mix-blend-luminosity grayscale-[20%] sepia-[30%] hue-rotate-[60deg] saturate-[1.2]' : '',
+							testimonial.imageClassName
+						)}
 					/>
 				</div>
 			</CardHeader>
-			<CardContent className='p-6 pt-5 pb-7'>
+			<CardContent className='p-6'>
 				<blockquote className='text-lg leading-7 font-semibold tracking-tight text-balance md:text-xl lg:text-2xl mb-6'>
 					{testimonial.testimonial}
 				</blockquote>

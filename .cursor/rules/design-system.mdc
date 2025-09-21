@@ -1,0 +1,511 @@
+# Дизайн-система Streamline
+
+Ця дизайн-система базується на аналізі сайту [Streamline](https://streamline-nextjs-template.vercel.app/) та містить всі ключові принципи, компоненти та стилі для створення сучасних SaaS продуктів.
+
+## 🎨 Колірна палітра
+
+### Основні кольори
+
+**Світла тема:**
+- `--background`: #ffffff (білий фон)
+- `--foreground`: #0a0a0a (темний текст)
+- `--primary`: #000000 (чорний для CTA)
+- `--primary-foreground`: #ffffff (білий текст на чорному)
+- `--muted`: #f5f5f5 (приглушений фон)
+- `--muted-foreground`: #737373 (приглушений текст)
+
+**Темна тема:**
+- `--background`: #0a0a0a (темний фон)
+- `--foreground`: #fafafa (світлий текст)
+- `--primary`: #ffffff (білий для CTA)
+- `--primary-foreground`: #000000 (чорний текст на білому)
+- `--muted`: #262626 (приглушений темний фон)
+- `--muted-foreground`: #a3a3a3 (приглушений світлий текст)
+
+### Акцентні кольори
+
+- `--accent`: #3b82f6 (синій для посилань)
+- `--success`: #10b981 (зелений для успіху)
+- `--warning`: #f59e0b (жовтий для попереджень)
+- `--error`: #ef4444 (червоний для помилок)
+
+### Градієнти
+
+- **Hero градієнт**: `linear-gradient(135deg, #667eea 0%, #764ba2 100%)`
+- **Card градієнт**: `linear-gradient(145deg, #f0f0f0 0%, #ffffff 100%)`
+
+## 📝 Типографія
+
+### Шрифтова система
+
+**Основний шрифт:**
+```css
+font-family: Inter, system-ui, -apple-system, sans-serif;
+```
+
+**Моноширинний шрифт:**
+```css
+font-family: 'JetBrains Mono', Consolas, 'Courier New', monospace;
+```
+
+### Розміри заголовків
+
+- **H1 (Hero)**: `clamp(3rem, 8vw, 6rem)` (48-96px)
+- **H1 (Page)**: `clamp(2.5rem, 6vw, 4rem)` (40-64px)
+- **H2 (Section)**: `clamp(2rem, 4vw, 3rem)` (32-48px)
+- **H3 (Subsection)**: `clamp(1.5rem, 3vw, 2rem)` (24-32px)
+- **H4**: `1.25rem` (20px)
+- **H5**: `1.125rem` (18px)
+- **H6**: `1rem` (16px)
+
+### Розміри тексту
+
+- **Large**: `1.125rem` (18px)
+- **Default**: `1rem` (16px)
+- **Small**: `0.875rem` (14px)
+- **XSmall**: `0.75rem` (12px)
+
+### Ваги шрифтів
+
+- **Thin**: 100
+- **Light**: 300
+- **Regular**: 400
+- **Medium**: 500
+- **Semibold**: 600
+- **Bold**: 700
+- **Black**: 900
+
+### Висота рядків
+
+- **Заголовки**: `1.2`
+- **Основний текст**: `1.6`
+- **Компактний текст**: `1.4`
+
+## 📏 Відступи та розміри
+
+### Система відступів (8px base)
+
+```css
+--spacing-xs: 0.25rem;    /* 4px */
+--spacing-sm: 0.5rem;     /* 8px */
+--spacing-md: 1rem;       /* 16px */
+--spacing-lg: 1.5rem;     /* 24px */
+--spacing-xl: 2rem;       /* 32px */
+--spacing-2xl: 3rem;      /* 48px */
+--spacing-3xl: 4rem;      /* 64px */
+--spacing-4xl: 6rem;      /* 96px */
+--spacing-5xl: 8rem;      /* 128px */
+```
+
+### Максимальна ширина контенту
+
+- **Container**: `1200px`
+- **Content**: `1024px`
+- **Text**: `768px`
+- **Narrow**: `640px`
+
+### Радіуси закруглення
+
+```css
+--radius-sm: 0.125rem;    /* 2px */
+--radius-md: 0.375rem;    /* 6px */
+--radius-lg: 0.5rem;      /* 8px */
+--radius-xl: 0.75rem;     /* 12px */
+--radius-2xl: 1rem;       /* 16px */
+--radius-full: 9999px;    /* Повністю круглий */
+```
+
+## 🧩 Компоненти
+
+### Кнопки
+
+#### Основна кнопка (Primary)
+```tsx
+<Button 
+  variant="default" 
+  size="lg"
+  className="bg-foreground text-background hover:bg-foreground/90"
+>
+  Get started
+</Button>
+```
+
+#### Додаткова кнопка (Secondary)
+```tsx
+<Button 
+  variant="outline" 
+  size="lg"
+  className="border-foreground text-foreground hover:bg-foreground hover:text-background"
+>
+  Sign up
+</Button>
+```
+
+#### Розміри кнопок
+- **sm**: `px-3 py-1.5 text-sm`
+- **md**: `px-4 py-2 text-base`
+- **lg**: `px-6 py-3 text-lg`
+- **xl**: `px-8 py-4 text-xl`
+
+### Картки (Cards)
+
+#### Основна картка
+```tsx
+<Card className="p-6 border-0 shadow-lg bg-background/50 backdrop-blur-sm">
+  <CardHeader>
+    <CardTitle>Заголовок картки</CardTitle>
+    <CardDescription>Опис картки</CardDescription>
+  </CardHeader>
+  <CardContent>
+    {/* Контент */}
+  </CardContent>
+</Card>
+```
+
+#### Картка з градієнтом
+```tsx
+<Card className="p-6 border-0 bg-gradient-to-br from-background to-muted">
+  {/* Контент */}
+</Card>
+```
+
+### Навігація
+
+#### Головне меню
+```tsx
+<NavigationMenu className="mx-auto">
+  <NavigationMenuList className="flex space-x-8">
+    <NavigationMenuItem>
+      <NavigationMenuLink className="text-muted-foreground hover:text-foreground transition-colors">
+        Product
+      </NavigationMenuLink>
+    </NavigationMenuItem>
+  </NavigationMenuList>
+</NavigationMenu>
+```
+
+#### Мобільне меню
+```tsx
+<Sheet>
+  <SheetTrigger asChild>
+    <Button variant="outline" size="icon">
+      <Menu className="h-6 w-6" />
+    </Button>
+  </SheetTrigger>
+  <SheetContent>
+    {/* Мобільна навігація */}
+  </SheetContent>
+</Sheet>
+```
+
+### Логотипи та іконки
+
+#### Розміри іконок
+- **xs**: `12px`
+- **sm**: `16px`
+- **md**: `20px`
+- **lg**: `24px`
+- **xl**: `32px`
+- **2xl**: `48px`
+
+#### Бібліотека іконок
+- **Lucide React** для основних іконок
+- **Heroicons** для додаткових іконок
+
+## 📱 Адаптивний дизайн
+
+### Точки зламу (Breakpoints)
+
+```css
+/* Mobile First підхід */
+@media (min-width: 640px) { /* sm */ }
+@media (min-width: 768px) { /* md */ }
+@media (min-width: 1024px) { /* lg */ }
+@media (min-width: 1280px) { /* xl */ }
+@media (min-width: 1536px) { /* 2xl */ }
+```
+
+### Адаптивна типографія
+
+```css
+/* Hero заголовок */
+.hero-title {
+  font-size: clamp(3rem, 8vw, 6rem);
+  line-height: 1.1;
+}
+
+/* Section заголовок */
+.section-title {
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 1.2;
+}
+```
+
+### Адаптивні відступи
+
+```css
+/* Секції */
+.section {
+  padding: clamp(3rem, 8vw, 6rem) 0;
+}
+
+/* Контейнери */
+.container {
+  padding: 0 clamp(1rem, 4vw, 2rem);
+}
+```
+
+## ✨ Анімації та переходи
+
+### Основні переходи
+
+```css
+/* Стандартний перехід */
+.transition-base {
+  transition: all 0.2s ease-in-out;
+}
+
+/* Повільний перехід */
+.transition-slow {
+  transition: all 0.3s ease-in-out;
+}
+
+/* Швидкий перехід */
+.transition-fast {
+  transition: all 0.15s ease-in-out;
+}
+```
+
+### Hover ефекти
+
+```css
+/* Кнопки */
+.button-hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Картки */
+.card-hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+```
+
+### Анімації появи
+
+```css
+/* Fade in */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Slide up */
+@keyframes slideUp {
+  from { 
+    opacity: 0; 
+    transform: translateY(20px); 
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0); 
+  }
+}
+```
+
+## 📊 Візуалізація даних
+
+### Кольори для графіків
+
+```css
+--chart-primary: #3b82f6;
+--chart-secondary: #8b5cf6;
+--chart-success: #10b981;
+--chart-warning: #f59e0b;
+--chart-error: #ef4444;
+```
+
+### Стилі метрик
+
+```tsx
+<div className="text-6xl font-bold text-foreground">
+  100%
+</div>
+<div className="text-muted-foreground text-lg">
+  More bugs
+</div>
+```
+
+## 🌟 Особливі секції
+
+### Hero секція
+
+```tsx
+<section className="py-20 lg:py-32 bg-gradient-to-br from-background via-background to-muted">
+  <div className="container mx-auto px-4">
+    <div className="text-center max-w-4xl mx-auto">
+      <h1 className="text-6xl lg:text-8xl font-bold mb-6">
+        Strategy guides product
+      </h1>
+      <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
+        Streamline is the fit-for-purpose tool for planning and building modern software products.
+      </p>
+      <Button size="lg" className="mr-4">
+        Get started
+      </Button>
+    </div>
+  </div>
+</section>
+```
+
+### Секція з логотипами
+
+```tsx
+<section className="py-16 bg-muted/30">
+  <div className="container mx-auto px-4">
+    <h3 className="text-center text-muted-foreground mb-12">
+      Powering the world's best product teams
+    </h3>
+    <div className="flex flex-wrap justify-center items-center gap-8 opacity-60">
+      {/* Логотипи компаній */}
+    </div>
+  </div>
+</section>
+```
+
+### Pricing секція
+
+```tsx
+<section className="py-20">
+  <div className="container mx-auto px-4">
+    <div className="text-center mb-16">
+      <h2 className="text-4xl font-bold mb-4">Pricing</h2>
+      <p className="text-muted-foreground">
+        Use Streamline for free with your whole team.
+      </p>
+    </div>
+    <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+      {/* Pricing картки */}
+    </div>
+  </div>
+</section>
+```
+
+## 🎯 Принципи дизайну
+
+### 1. Мінімалізм
+- Чистий, незагромаджений дизайн
+- Багато білого простору
+- Фокус на контенті
+
+### 2. Контраст
+- Сильний контраст між текстом та фоном
+- Чіткі кольорові акценти
+- Виділення важливих елементів
+
+### 3. Послідовність
+- Єдина система відступів
+- Однакові розміри компонентів
+- Послідовна типографія
+
+### 4. Доступність
+- Високий контраст кольорів
+- Читабельні розміри шрифтів
+- Підтримка клавіатурної навігації
+
+### 5. Адаптивність
+- Mobile-first підхід
+- Плавні переходи між розмірами екрана
+- Оптимізація для різних пристроїв
+
+## 🔧 Утиліти та хелпери
+
+### CSS кастомні властивості
+
+```css
+:root {
+  /* Кольори */
+  --color-primary: #000000;
+  --color-secondary: #737373;
+  
+  /* Відступи */
+  --spacing-unit: 0.25rem;
+  
+  /* Анімації */
+  --duration-fast: 0.15s;
+  --duration-normal: 0.2s;
+  --duration-slow: 0.3s;
+  
+  /* Функції пом'якшення */
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-out: cubic-bezier(0, 0, 0.2, 1);
+}
+```
+
+### Tailwind кастомні класи
+
+```css
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  .container-narrow {
+    @apply max-w-4xl mx-auto px-4;
+  }
+  
+  .section-padding {
+    @apply py-16 lg:py-24;
+  }
+}
+```
+
+## 📝 Рекомендації з використання
+
+### 1. Завжди використовуйте систему відступів
+```tsx
+// ✅ Правильно
+<div className="p-4 mb-8">
+
+// ❌ Неправильно  
+<div style={{padding: '17px', marginBottom: '33px'}}>
+```
+
+### 2. Дотримуйтесь типографічної ієрархії
+```tsx
+// ✅ Правильно
+<h1 className="text-4xl font-bold">
+<h2 className="text-2xl font-semibold">
+<p className="text-base">
+
+// ❌ Неправильно
+<h1 className="text-sm">
+<p className="text-6xl font-bold">
+```
+
+### 3. Використовуйте семантичні кольори
+```tsx
+// ✅ Правильно
+<Button variant="destructive">Delete</Button>
+
+// ❌ Неправильно
+<Button className="bg-red-500">Delete</Button>
+```
+
+### 4. Забезпечуйте доступність
+```tsx
+// ✅ Правильно
+<Button aria-label="Close dialog">
+  <X className="h-4 w-4" />
+</Button>
+
+// ❌ Неправильно
+<Button>
+  <X className="h-4 w-4" />
+</Button>
+```
+
+---
+
+*Ця дизайн-система є живим документом та повинна оновлюватися разом з розвитком продукту.*
