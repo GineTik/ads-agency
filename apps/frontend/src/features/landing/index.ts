@@ -1,11 +1,3 @@
-export * from './home.page'
-export * from './service.page'
-export * from './ui/features'
-export * from './ui/gallery'
-export * from './ui/hero'
-export * from './ui/logos'
-export * from './ui/navbar'
-export * from './ui/service/hero'
-export * from './ui/team'
-export * from './ui/testimonials'
-
+export * from "./home.page";
+export * from "./service.page";
+export * from "./ui/navbar";

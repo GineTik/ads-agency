@@ -1,19 +1,13 @@
-import { Features } from './ui/features'
-import { Gallery } from './ui/gallery'
-import { Hero } from './ui/hero'
-import { Logos } from './ui/logos'
-import { Team } from './ui/team'
-import { Testimonials } from './ui/testimonials'
+import { Advantages } from "./ui/advantages";
+import { Hero } from "./ui/hero";
+import { Portfolio } from "./ui/portfolio";
 
 export function HomePage() {
-	return (
-		<>
-			<Hero />
-			<Logos />
-			<Features />
-			<Team />
-			<Testimonials />
-			<Gallery />
-		</>
-	)
+  return (
+    <>
+      <Hero />
+      <Advantages />
+      <Portfolio />
+    </>
+  );
 }
