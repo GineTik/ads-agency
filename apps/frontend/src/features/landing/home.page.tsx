@@ -1,9 +1,8 @@
-import { Advantages } from "./ui/advantages";
-import { Hero } from "./ui/hero";
-import { Portfolio } from "./ui/portfolio";
-import { History } from "./ui/history";
-import { ContactUs } from "./ui/contact-us";
-import { Footer } from "./ui/footer";
+import { ContactUs } from "./ui/common/contact-us";
+import { Advantages } from "./ui/common/advantages";
+import { Portfolio } from "./ui/home/portfolio";
+import { Hero } from "./ui/service";
+import { History } from "./ui/home/history";
 
 export function HomePage() {
   return (
@@ -13,7 +12,6 @@ export function HomePage() {
       <Portfolio />
       <History />
       <ContactUs />
-      <Footer />
     </>
   );
 }
