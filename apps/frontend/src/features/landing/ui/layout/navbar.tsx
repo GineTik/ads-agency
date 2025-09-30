@@ -23,7 +23,7 @@ import {
 } from '@/shared/components/ui-kit/sheet'
 import { Menu } from 'lucide-react'
 import Link from 'next/link'
-import { MenuItem, useMenu } from '../hooks/use-menu'
+import { MenuItem, useMenu } from '../../hooks/use-menu'
 
 export const Navbar = () => {
 	const menu = useMenu()
